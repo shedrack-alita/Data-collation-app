@@ -1,0 +1,34 @@
+{
+  "name": "data-collection-platform",
+  "version": "1.0.0",
+  "description": "Comprehensive data collection, crowdsourcing, and analytics platform",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "install:all": "npm install && cd packages/backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:analytics\"",
+    "dev:backend": "cd packages/backend && npm run dev",
+    "dev:frontend": "cd packages/frontend && npm run dev",
+    "dev:analytics": "cd packages/analytics && python -m uvicorn main:app --reload --port 8001",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd packages/frontend && npm run build",
+    "build:backend": "cd packages/backend && npm run build",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": [
+    "data-collection",
+    "crowdsourcing",
+    "analytics",
+    "survey",
+    "marketplace"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
