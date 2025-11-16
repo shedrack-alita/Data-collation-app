@@ -7,7 +7,7 @@ export interface AuthRequest extends Request {
   user?: any;
 }
 
-export const protect = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const protect = async (req: AuthRequest, _res: Response, next: NextFunction) => {
   try {
     let token: string | undefined;
 
@@ -25,7 +25,7 @@ export const protect = async (req: AuthRequest, res: Response, next: NextFunctio
       const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
 
       // Get user from database
-      const user = await User.findByPk(decoded.id);
+      const user = await User.findById(decoded.id);
 
       if (!user) {
         throw new AppError('User not found', 401);
@@ -46,7 +46,7 @@ export const protect = async (req: AuthRequest, res: Response, next: NextFunctio
 };
 
 export const authorize = (...roles: UserRole[]) => {
-  return (req: AuthRequest, res: Response, next: NextFunction) => {
+  return (req: AuthRequest, _res: Response, next: NextFunction) => {
     if (!req.user) {
       return next(new AppError('Not authorized', 401));
     }
@@ -61,7 +61,7 @@ export const authorize = (...roles: UserRole[]) => {
   };
 };
 
-export const optionalAuth = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const optionalAuth = async (req: AuthRequest, _res: Response, next: NextFunction) => {
   try {
     let token: string | undefined;
 
@@ -72,7 +72,7 @@ export const optionalAuth = async (req: AuthRequest, res: Response, next: NextFu
     if (token) {
       try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
-        const user = await User.findByPk(decoded.id);
+        const user = await User.findById(decoded.id);
         if (user && user.status === 'active') {
           req.user = user;
         }
