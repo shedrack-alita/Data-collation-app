@@ -29,7 +29,7 @@ export default function FormView() {
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
+    <Container maxWidth="md" sx={{ py: 4, px: { xs: 3, sm: 4, md: 6 } }}>
       <Paper elevation={0} sx={{ p: 4, border: 1, borderColor: 'divider' }}>
         <Typography variant="h4" gutterBottom fontWeight="bold">
           {mockForm.title}
