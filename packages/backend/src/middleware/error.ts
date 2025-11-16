@@ -16,9 +16,9 @@ export class AppError extends Error {
 
 export const errorHandler = (
   err: Error | AppError,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   let error = { ...err };
   error.message = err.message;
@@ -64,7 +64,7 @@ export const errorHandler = (
   });
 };
 
-export const notFound = (req: Request, res: Response, next: NextFunction) => {
+export const notFound = (req: Request, _res: Response, next: NextFunction) => {
   const error = new AppError(`Not Found - ${req.originalUrl}`, 404);
   next(error);
 };
