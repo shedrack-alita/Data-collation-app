@@ -73,7 +73,7 @@ export default function Home() {
       {/* Hero Section */}
       <Box
         sx={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          bgcolor: '#C92258',
           color: 'white',
           py: 12,
           mb: 8,
@@ -183,7 +183,7 @@ export default function Home() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       bgcolor: 'white',
-                      border: '4px solid rgba(102, 126, 234, 0.3)'
+                      border: '4px solid rgba(201, 34, 88, 0.3)'
                     }}
                   >
                     <Storage sx={{ fontSize: 80, color: 'primary.main' }} />
