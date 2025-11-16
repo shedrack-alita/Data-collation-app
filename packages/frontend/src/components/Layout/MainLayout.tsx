@@ -1,11 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
+import Navbar from './Navbar';
 
 export default function MainLayout() {
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-      {/* Sidebar will be added here */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Navbar />
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <Outlet />
       </Box>
     </Box>
