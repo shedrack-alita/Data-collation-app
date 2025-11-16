@@ -7,18 +7,20 @@ import logger from '../utils/logger';
 
 const generateToken = (userId: string): string => {
   const secret = process.env.JWT_SECRET as string;
-  const options: SignOptions = {
-    expiresIn: process.env.JWT_EXPIRE || '7d'
-  };
-  return jwt.sign({ id: userId }, secret, options);
+  return jwt.sign(
+    { id: userId },
+    secret,
+    { expiresIn: (process.env.JWT_EXPIRE || '7d') as string }
+  );
 };
 
 const generateRefreshToken = (userId: string): string => {
   const secret = process.env.JWT_REFRESH_SECRET as string;
-  const options: SignOptions = {
-    expiresIn: process.env.JWT_REFRESH_EXPIRE || '30d'
-  };
-  return jwt.sign({ id: userId }, secret, options);
+  return jwt.sign(
+    { id: userId },
+    secret,
+    { expiresIn: (process.env.JWT_REFRESH_EXPIRE || '30d') as string }
+  );
 };
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
