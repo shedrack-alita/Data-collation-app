@@ -1,25 +1,23 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt, { SignOptions } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import User, { UserRole } from '../models/User.model';
 import Wallet from '../models/Wallet.model';
 import { AppError } from '../middleware/error';
 import logger from '../utils/logger';
 
 const generateToken = (userId: string): string => {
-  const secret = process.env.JWT_SECRET as string;
   return jwt.sign(
     { id: userId },
-    secret,
-    { expiresIn: (process.env.JWT_EXPIRE || '7d') as string }
+    process.env.JWT_SECRET as string,
+    { expiresIn: '7d' }
   );
 };
 
 const generateRefreshToken = (userId: string): string => {
-  const secret = process.env.JWT_REFRESH_SECRET as string;
   return jwt.sign(
     { id: userId },
-    secret,
-    { expiresIn: (process.env.JWT_REFRESH_EXPIRE || '30d') as string }
+    process.env.JWT_REFRESH_SECRET as string,
+    { expiresIn: '30d' }
   );
 };
 
