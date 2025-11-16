@@ -53,7 +53,7 @@ const limiter = rateLimit({
 app.use('/api/', limiter);
 
 // Routes
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 

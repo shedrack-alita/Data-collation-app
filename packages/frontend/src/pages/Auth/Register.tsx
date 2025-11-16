@@ -9,7 +9,13 @@ import {
   Typography,
   Link,
   Alert,
-  Grid
+  Grid,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  FormHelperText
 } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { register as registerAction, clearError } from '../../store/slices/authSlice';
@@ -20,6 +26,7 @@ interface RegisterForm {
   email: string;
   password: string;
   confirmPassword: string;
+  role: 'creator' | 'contributor';
 }
 
 export default function Register() {
@@ -31,8 +38,13 @@ export default function Register() {
   const password = watch('password');
 
   const onSubmit = async (data: RegisterForm) => {
-    const { confirmPassword, ...registerData } = data;
-    const result = await dispatch(registerAction(registerData));
+    const { confirmPassword, role, ...registerData } = data;
+    // Convert role to roles array
+    const dataWithRoles = {
+      ...registerData,
+      roles: [role]
+    };
+    const result = await dispatch(registerAction(dataWithRoles));
     if (registerAction.fulfilled.match(result)) {
       navigate('/dashboard');
     }
@@ -75,6 +87,58 @@ export default function Register() {
               />
             </Grid>
           </Grid>
+
+          <FormControl component="fieldset" margin="normal" fullWidth error={!!errors.role}>
+            <FormLabel component="legend" sx={{ mb: 1, fontWeight: 600 }}>
+              I want to:
+            </FormLabel>
+            <RadioGroup row defaultValue="contributor">
+              <FormControlLabel
+                value="creator"
+                control={<Radio {...register('role', { required: 'Please select your role' })} />}
+                label={
+                  <Box>
+                    <Typography variant="body1" fontWeight={600}>Create Surveys</Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      Design and publish surveys to collect data
+                    </Typography>
+                  </Box>
+                }
+                sx={{
+                  flex: 1,
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  borderRadius: 1,
+                  p: 2,
+                  mr: 1,
+                  '&:hover': { borderColor: 'primary.main' }
+                }}
+              />
+              <FormControlLabel
+                value="contributor"
+                control={<Radio {...register('role', { required: 'Please select your role' })} />}
+                label={
+                  <Box>
+                    <Typography variant="body1" fontWeight={600}>Contribute Data</Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      Fill out surveys and earn rewards
+                    </Typography>
+                  </Box>
+                }
+                sx={{
+                  flex: 1,
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  borderRadius: 1,
+                  p: 2,
+                  '&:hover': { borderColor: 'primary.main' }
+                }}
+              />
+            </RadioGroup>
+            {errors.role && (
+              <FormHelperText>{errors.role.message}</FormHelperText>
+            )}
+          </FormControl>
 
           <TextField
             fullWidth
