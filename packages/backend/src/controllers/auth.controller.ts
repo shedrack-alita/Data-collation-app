@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import User, { UserRole } from '../models/User.model';
-import { Wallet } from '../models/Wallet.model';
+import Wallet from '../models/Wallet.model';
 import { AppError } from '../middleware/error';
 import logger from '../utils/logger';
 
@@ -22,7 +22,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     const { email, password, firstName, lastName, phone, roles } = req.body;
 
     // Check if user already exists
-    const existingUser = await User.findOne({ where: { email } });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       throw new AppError('User already exists with this email', 400);
     }
@@ -39,7 +39,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
     // Create wallet for user
     await Wallet.create({
-      userId: user.id
+      userId: user._id
     });
 
     // Generate tokens
@@ -69,8 +69,8 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
       throw new AppError('Please provide email and password', 400);
     }
 
-    // Find user
-    const user = await User.findOne({ where: { email } });
+    // Find user (include password field)
+    const user = await User.findOne({ email }).select('+password');
     if (!user) {
       throw new AppError('Invalid credentials', 401);
     }
@@ -107,7 +107,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
 export const getMe = async (req: any, res: Response, next: NextFunction) => {
   try {
-    const user = await User.findByPk(req.user.id);
+    const user = await User.findById(req.user.id);
 
     if (!user) {
       throw new AppError('User not found', 404);
@@ -126,7 +126,7 @@ export const updateProfile = async (req: any, res: Response, next: NextFunction)
   try {
     const { firstName, lastName, phone, profileImage } = req.body;
 
-    const user = await User.findByPk(req.user.id);
+    const user = await User.findById(req.user.id);
 
     if (!user) {
       throw new AppError('User not found', 404);
@@ -160,7 +160,7 @@ export const refreshToken = async (req: Request, res: Response, next: NextFuncti
     try {
       const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET!) as { id: string };
 
-      const user = await User.findByPk(decoded.id);
+      const user = await User.findById(decoded.id);
 
       if (!user) {
         throw new AppError('User not found', 404);
@@ -189,7 +189,7 @@ export const changePassword = async (req: any, res: Response, next: NextFunction
   try {
     const { currentPassword, newPassword } = req.body;
 
-    const user = await User.findByPk(req.user.id);
+    const user = await User.findById(req.user.id).select('+password');
 
     if (!user || !user.password) {
       throw new AppError('User not found', 404);

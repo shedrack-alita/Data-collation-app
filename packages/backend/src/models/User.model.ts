@@ -1,5 +1,4 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import { sequelize } from '../config/database';
+import mongoose, { Document, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 export enum UserRole {
@@ -15,8 +14,7 @@ export enum UserStatus {
   PENDING = 'pending'
 }
 
-export interface UserAttributes {
-  id: string;
+export interface IUser extends Document {
   email: string;
   password?: string;
   firstName: string;
@@ -32,139 +30,116 @@ export interface UserAttributes {
   facebookId?: string;
   performanceScore: number;
   totalEarnings: number;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  comparePassword(candidatePassword: string): Promise<boolean>;
+  toJSON(): any;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'id' | 'roles' | 'status' | 'isEmailVerified' | 'isPhoneVerified' | 'isKYCVerified' | 'performanceScore' | 'totalEarnings'> {}
-
-class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
-  public id!: string;
-  public email!: string;
-  public password?: string;
-  public firstName!: string;
-  public lastName!: string;
-  public phone?: string;
-  public roles!: UserRole[];
-  public status!: UserStatus;
-  public isEmailVerified!: boolean;
-  public isPhoneVerified!: boolean;
-  public isKYCVerified!: boolean;
-  public profileImage?: string;
-  public googleId?: string;
-  public facebookId?: string;
-  public performanceScore!: number;
-  public totalEarnings!: number;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-
-  // Instance methods
-  public async comparePassword(candidatePassword: string): Promise<boolean> {
-    if (!this.password) return false;
-    return bcrypt.compare(candidatePassword, this.password);
-  }
-
-  public toJSON(): Partial<UserAttributes> {
-    const values = { ...this.get() };
-    delete values.password;
-    return values;
-  }
-}
-
-User.init(
+const UserSchema = new Schema<IUser>(
   {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
-    },
     email: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true,
       unique: true,
-      validate: {
-        isEmail: true
-      }
+      lowercase: true,
+      trim: true,
+      match: [/^\S+@\S+\.\S+$/, 'Please provide a valid email']
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: true
+      type: String,
+      select: false
     },
     firstName: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: String,
+      required: true,
+      trim: true
     },
     lastName: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: String,
+      required: true,
+      trim: true
     },
     phone: {
-      type: DataTypes.STRING,
-      allowNull: true
+      type: String,
+      trim: true
     },
     roles: {
-      type: DataTypes.ARRAY(DataTypes.ENUM(...Object.values(UserRole))),
-      defaultValue: [UserRole.CONTRIBUTOR]
+      type: [String],
+      enum: Object.values(UserRole),
+      default: [UserRole.CONTRIBUTOR]
     },
     status: {
-      type: DataTypes.ENUM(...Object.values(UserStatus)),
-      defaultValue: UserStatus.PENDING
+      type: String,
+      enum: Object.values(UserStatus),
+      default: UserStatus.ACTIVE
     },
     isEmailVerified: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+      type: Boolean,
+      default: false
     },
     isPhoneVerified: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+      type: Boolean,
+      default: false
     },
     isKYCVerified: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+      type: Boolean,
+      default: false
     },
     profileImage: {
-      type: DataTypes.STRING,
-      allowNull: true
+      type: String
     },
     googleId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      unique: true
+      type: String,
+      unique: true,
+      sparse: true
     },
     facebookId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      unique: true
+      type: String,
+      unique: true,
+      sparse: true
     },
     performanceScore: {
-      type: DataTypes.DECIMAL(5, 2),
-      defaultValue: 0.00
+      type: Number,
+      default: 0
     },
     totalEarnings: {
-      type: DataTypes.DECIMAL(12, 2),
-      defaultValue: 0.00
+      type: Number,
+      default: 0
     }
   },
   {
-    sequelize,
-    tableName: 'users',
     timestamps: true,
-    hooks: {
-      beforeCreate: async (user: User) => {
-        if (user.password) {
-          const salt = await bcrypt.genSalt(10);
-          user.password = await bcrypt.hash(user.password, salt);
-        }
-      },
-      beforeUpdate: async (user: User) => {
-        if (user.changed('password') && user.password) {
-          const salt = await bcrypt.genSalt(10);
-          user.password = await bcrypt.hash(user.password, salt);
-        }
+    toJSON: {
+      virtuals: true,
+      transform: function (doc, ret) {
+        delete ret.password;
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
+        return ret;
       }
     }
   }
 );
+
+// Hash password before saving
+UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password') || !this.password) {
+    return next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+// Compare password method
+UserSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {
+  if (!this.password) return false;
+  return bcrypt.compare(candidatePassword, this.password);
+};
+
+const User = mongoose.model<IUser>('User', UserSchema);
 
 export default User;

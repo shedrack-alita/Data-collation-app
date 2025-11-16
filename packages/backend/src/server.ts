@@ -8,7 +8,7 @@ import http from 'http';
 import { Server as SocketServer } from 'socket.io';
 import rateLimit from 'express-rate-limit';
 
-import { connectPostgres, connectMongoDB, connectRedis } from './config/database';
+import { connectMongoDB } from './config/database';
 import { errorHandler } from './middleware/error';
 import logger from './utils/logger';
 
@@ -91,10 +91,8 @@ const PORT = process.env.PORT || 5000;
 
 async function startServer() {
   try {
-    // Connect to databases
-    await connectPostgres();
+    // Connect to MongoDB
     await connectMongoDB();
-    await connectRedis();
 
     // Start server
     server.listen(PORT, () => {
