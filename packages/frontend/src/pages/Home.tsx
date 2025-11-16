@@ -81,7 +81,7 @@ export default function Home() {
           overflow: 'hidden'
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{ px: { xs: 3, sm: 4, md: 6 } }}>
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
               <Typography variant="h2" gutterBottom fontWeight="bold">
@@ -109,7 +109,7 @@ export default function Home() {
                 <Button
                   variant="outlined"
                   size="large"
-                  onClick={() => navigate('/forms')}
+                  onClick={() => navigate('/marketplace')}
                   sx={{
                     borderColor: 'white',
                     color: 'white',
@@ -121,7 +121,7 @@ export default function Home() {
                     px: 4
                   }}
                 >
-                  Browse Surveys
+                  Find Surveys
                 </Button>
               </Stack>
             </Grid>
@@ -339,7 +339,7 @@ export default function Home() {
       </Box>
 
       {/* Features Section */}
-      <Container maxWidth="lg" sx={{ mb: 8 }}>
+      <Container maxWidth="lg" sx={{ mb: 8, px: { xs: 3, sm: 4, md: 6 } }}>
         <Typography variant="h3" align="center" gutterBottom fontWeight="bold">
           Everything You Need
         </Typography>
@@ -367,7 +367,7 @@ export default function Home() {
 
       {/* Benefits Section */}
       <Box sx={{ bgcolor: 'grey.50', py: 8, mb: 8 }}>
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{ px: { xs: 3, sm: 4, md: 6 } }}>
           <Grid container spacing={6} alignItems="center">
             <Grid item xs={12} md={6}>
               <Typography variant="h3" gutterBottom fontWeight="bold">
@@ -420,7 +420,7 @@ export default function Home() {
       </Box>
 
       {/* CTA Section */}
-      <Container maxWidth="md" sx={{ mb: 8, textAlign: 'center' }}>
+      <Container maxWidth="md" sx={{ mb: 8, textAlign: 'center', px: { xs: 3, sm: 4, md: 6 } }}>
         <Typography variant="h3" gutterBottom fontWeight="bold">
           Ready to Get Started?
         </Typography>

@@ -64,9 +64,10 @@ export default function Navbar() {
 
   const publicNavItems = [
     { label: 'Home', path: '/' },
-    { label: 'Browse Surveys', path: '/forms' },
-    { label: 'Marketplace', path: '/marketplace' },
-    { label: 'Analytics', path: '/analytics' }
+    { label: 'Create Survey', path: '/forms/new' },
+    { label: 'Find Surveys', path: '/marketplace' },
+    { label: 'Analytics', path: '/analytics' },
+    { label: 'About Us', path: '/about' }
   ];
 
   const userMenuItems = isAuthenticated

@@ -60,17 +60,17 @@ export default function Footer() {
               Platform
             </Typography>
             <Stack spacing={1}>
-              <Link href="/forms" color="rgba(255,255,255,0.7)" underline="none" sx={{ '&:hover': { color: '#C92258' } }}>
-                Browse Surveys
+              <Link href="/forms/new" color="rgba(255,255,255,0.7)" underline="none" sx={{ '&:hover': { color: '#C92258' } }}>
+                Create Survey
               </Link>
               <Link href="/marketplace" color="rgba(255,255,255,0.7)" underline="none" sx={{ '&:hover': { color: '#C92258' } }}>
-                Marketplace
+                Find Surveys
               </Link>
               <Link href="/analytics" color="rgba(255,255,255,0.7)" underline="none" sx={{ '&:hover': { color: '#C92258' } }}>
                 Analytics
               </Link>
-              <Link href="/pricing" color="rgba(255,255,255,0.7)" underline="none" sx={{ '&:hover': { color: '#C92258' } }}>
-                Pricing
+              <Link href="/about" color="rgba(255,255,255,0.7)" underline="none" sx={{ '&:hover': { color: '#C92258' } }}>
+                About Us
               </Link>
             </Stack>
           </Grid>

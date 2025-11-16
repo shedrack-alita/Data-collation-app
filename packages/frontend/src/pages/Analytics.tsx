@@ -121,7 +121,7 @@ export default function Analytics() {
   };
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
+    <Container maxWidth="xl" sx={{ py: 4, px: { xs: 3, sm: 4, md: 6 } }}>
       {/* Header */}
       <Box sx={{ mb: 4 }}>
         <Typography variant="h3" gutterBottom fontWeight="bold">

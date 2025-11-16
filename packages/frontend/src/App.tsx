@@ -9,6 +9,7 @@ import AuthLayout from './components/Layout/AuthLayout';
 
 // Pages
 import Home from './pages/Home';
+import About from './pages/About';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Dashboard from './pages/Dashboard';
@@ -36,6 +37,7 @@ function App() {
       {/* Public Routes with Main Layout */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/forms" element={<FormList />} />
         <Route path="/forms/:id" element={<FormView />} />
         <Route path="/marketplace" element={<Marketplace />} />
