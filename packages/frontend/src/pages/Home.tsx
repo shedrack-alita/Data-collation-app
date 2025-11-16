@@ -6,7 +6,8 @@ import {
   Grid,
   Card,
   CardContent,
-  Stack
+  Stack,
+  Paper
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -15,7 +16,11 @@ import {
   People,
   Analytics,
   CheckCircle,
-  TrendingUp
+  TrendingUp,
+  BarChart,
+  PieChart,
+  ShowChart,
+  Storage
 } from '@mui/icons-material';
 
 export default function Home() {
@@ -71,12 +76,14 @@ export default function Home() {
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           color: 'white',
           py: 12,
-          mb: 8
+          mb: 8,
+          position: 'relative',
+          overflow: 'hidden'
         }}
       >
         <Container maxWidth="lg">
           <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} md={6}>
               <Typography variant="h2" gutterBottom fontWeight="bold">
                 Data Collection & Analytics Platform
               </Typography>
@@ -118,32 +125,217 @@ export default function Home() {
                 </Button>
               </Stack>
             </Grid>
-            <Grid item xs={12} md={5}>
+
+            {/* Hero Illustration */}
+            <Grid item xs={12} md={6}>
               <Box
                 sx={{
-                  bgcolor: 'rgba(255,255,255,0.1)',
-                  backdropFilter: 'blur(10px)',
-                  borderRadius: 4,
-                  p: 4,
-                  textAlign: 'center'
+                  position: 'relative',
+                  height: { xs: 300, md: 400 },
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
               >
-                <Typography variant="h3" fontWeight="bold" gutterBottom>
-                  10,000+
-                </Typography>
-                <Typography variant="body1" sx={{ mb: 2 }}>
-                  Active Users
-                </Typography>
-                <Typography variant="h3" fontWeight="bold" gutterBottom>
-                  50,000+
-                </Typography>
-                <Typography variant="body1">
-                  Responses Collected
-                </Typography>
+                {/* Main visual - Data collection illustration */}
+                <Box
+                  sx={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  {/* Background circles */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      width: 300,
+                      height: 300,
+                      borderRadius: '50%',
+                      bgcolor: 'rgba(255,255,255,0.1)',
+                      animation: 'pulse 3s ease-in-out infinite'
+                    }}
+                  />
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      width: 240,
+                      height: 240,
+                      borderRadius: '50%',
+                      bgcolor: 'rgba(255,255,255,0.15)',
+                      animation: 'pulse 3s ease-in-out infinite 0.5s'
+                    }}
+                  />
+
+                  {/* Central data hub */}
+                  <Paper
+                    elevation={8}
+                    sx={{
+                      position: 'relative',
+                      zIndex: 2,
+                      width: 180,
+                      height: 180,
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      bgcolor: 'white',
+                      border: '4px solid rgba(102, 126, 234, 0.3)'
+                    }}
+                  >
+                    <Storage sx={{ fontSize: 80, color: 'primary.main' }} />
+                  </Paper>
+
+                  {/* Floating data cards */}
+                  <Paper
+                    elevation={4}
+                    sx={{
+                      position: 'absolute',
+                      top: 20,
+                      right: 40,
+                      p: 2,
+                      bgcolor: 'white',
+                      borderRadius: 2,
+                      animation: 'float 4s ease-in-out infinite',
+                      minWidth: 100
+                    }}
+                  >
+                    <BarChart sx={{ fontSize: 32, color: 'primary.main' }} />
+                    <Typography variant="caption" display="block" color="text.secondary">
+                      Analytics
+                    </Typography>
+                  </Paper>
+
+                  <Paper
+                    elevation={4}
+                    sx={{
+                      position: 'absolute',
+                      top: 120,
+                      left: 20,
+                      p: 2,
+                      bgcolor: 'white',
+                      borderRadius: 2,
+                      animation: 'float 4s ease-in-out infinite 1s',
+                      minWidth: 100
+                    }}
+                  >
+                    <PieChart sx={{ fontSize: 32, color: 'secondary.main' }} />
+                    <Typography variant="caption" display="block" color="text.secondary">
+                      Reports
+                    </Typography>
+                  </Paper>
+
+                  <Paper
+                    elevation={4}
+                    sx={{
+                      position: 'absolute',
+                      bottom: 60,
+                      right: 60,
+                      p: 2,
+                      bgcolor: 'white',
+                      borderRadius: 2,
+                      animation: 'float 4s ease-in-out infinite 2s',
+                      minWidth: 100
+                    }}
+                  >
+                    <ShowChart sx={{ fontSize: 32, color: 'success.main' }} />
+                    <Typography variant="caption" display="block" color="text.secondary">
+                      Insights
+                    </Typography>
+                  </Paper>
+
+                  <Paper
+                    elevation={4}
+                    sx={{
+                      position: 'absolute',
+                      bottom: 40,
+                      left: 60,
+                      p: 2,
+                      bgcolor: 'white',
+                      borderRadius: 2,
+                      animation: 'float 4s ease-in-out infinite 3s',
+                      minWidth: 100
+                    }}
+                  >
+                    <People sx={{ fontSize: 32, color: 'warning.main' }} />
+                    <Typography variant="caption" display="block" color="text.secondary">
+                      Contributors
+                    </Typography>
+                  </Paper>
+                </Box>
+
+                {/* Statistics overlay */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: -30,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '90%',
+                    zIndex: 3
+                  }}
+                >
+                  <Paper
+                    elevation={6}
+                    sx={{
+                      p: 3,
+                      bgcolor: 'rgba(255,255,255,0.95)',
+                      backdropFilter: 'blur(10px)',
+                      borderRadius: 3
+                    }}
+                  >
+                    <Grid container spacing={2}>
+                      <Grid item xs={6}>
+                        <Typography variant="h4" fontWeight="bold" color="primary">
+                          10,000+
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          Active Users
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="h4" fontWeight="bold" color="secondary">
+                          50,000+
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          Responses
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                </Box>
               </Box>
             </Grid>
           </Grid>
         </Container>
+
+        {/* CSS Animations */}
+        <style>
+          {`
+            @keyframes pulse {
+              0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+              }
+              50% {
+                transform: scale(1.05);
+                opacity: 0.5;
+              }
+            }
+
+            @keyframes float {
+              0%, 100% {
+                transform: translateY(0px);
+              }
+              50% {
+                transform: translateY(-15px);
+              }
+            }
+          `}
+        </style>
       </Box>
 
       {/* Features Section */}
