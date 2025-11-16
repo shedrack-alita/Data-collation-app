@@ -1,20 +1,24 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import User, { UserRole } from '../models/User.model';
 import Wallet from '../models/Wallet.model';
 import { AppError } from '../middleware/error';
 import logger from '../utils/logger';
 
 const generateToken = (userId: string): string => {
-  return jwt.sign({ id: userId }, process.env.JWT_SECRET!, {
+  const secret = process.env.JWT_SECRET as string;
+  const options: SignOptions = {
     expiresIn: process.env.JWT_EXPIRE || '7d'
-  });
+  };
+  return jwt.sign({ id: userId }, secret, options);
 };
 
 const generateRefreshToken = (userId: string): string => {
-  return jwt.sign({ id: userId }, process.env.JWT_REFRESH_SECRET!, {
+  const secret = process.env.JWT_REFRESH_SECRET as string;
+  const options: SignOptions = {
     expiresIn: process.env.JWT_REFRESH_EXPIRE || '30d'
-  });
+  };
+  return jwt.sign({ id: userId }, secret, options);
 };
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
