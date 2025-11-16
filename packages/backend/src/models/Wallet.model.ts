@@ -53,10 +53,8 @@ const WalletSchema = new Schema<IWallet>(
     toJSON: {
       virtuals: true,
       transform: (_doc, ret) => {
-        ret.id = ret._id;
-        delete ret._id;
-        if (ret.__v !== undefined) delete ret.__v;
-        return ret;
+        const { _id, __v, ...rest } = ret;
+        return { ...rest, id: _id };
       }
     }
   }
