@@ -48,7 +48,7 @@ export default function FormList() {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
         <div>
           <Typography variant="h4" gutterBottom fontWeight="bold">
-            {isAuthenticated ? 'My Forms' : 'Browse Forms'}
+            {isAuthenticated ? 'My Surveys' : 'Browse Surveys'}
           </Typography>
           <Typography variant="body1" color="text.secondary">
             {isAuthenticated
@@ -62,7 +62,7 @@ export default function FormList() {
           onClick={handleCreateForm}
           size="large"
         >
-          Create Form
+          Create Survey
         </Button>
       </Box>
 

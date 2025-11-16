@@ -121,7 +121,7 @@ export default function Home() {
                     px: 4
                   }}
                 >
-                  Browse Forms
+                  Browse Surveys
                 </Button>
               </Stack>
             </Grid>

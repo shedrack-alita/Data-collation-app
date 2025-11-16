@@ -64,7 +64,7 @@ export default function Navbar() {
 
   const publicNavItems = [
     { label: 'Home', path: '/' },
-    { label: 'Browse Forms', path: '/forms' },
+    { label: 'Browse Surveys', path: '/forms' },
     { label: 'Marketplace', path: '/marketplace' },
     { label: 'Analytics', path: '/analytics' }
   ];
@@ -72,7 +72,7 @@ export default function Navbar() {
   const userMenuItems = isAuthenticated
     ? [
         { label: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
-        { label: 'My Forms', path: '/forms', icon: <Assessment /> },
+        { label: 'My Surveys', path: '/forms', icon: <Assessment /> },
         { label: 'Wallet', path: '/wallet', icon: <AccountBalanceWallet /> },
         { label: 'Profile', path: '/profile', icon: <Person /> },
         ...(user?.roles?.includes('admin')
