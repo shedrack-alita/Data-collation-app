@@ -10,6 +10,10 @@ yarn.lock
 .env.production
 .env.test
 
+# Docs (keep README.md only)
+*.md
+!README.md
+
 # Build outputs
 dist/
 build/
