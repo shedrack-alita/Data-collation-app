@@ -88,7 +88,7 @@ export default function About() {
         }}
       >
         <Container maxWidth="lg">
-          <Typography variant="h2" fontWeight="bold" gutterBottom align="center">
+          <Typography variant="h2" gutterBottom align="center" sx={{ fontWeight: 'bold' }}>
             About DataCollect
           </Typography>
           <Typography variant="h5" align="center" sx={{ maxWidth: '800px', mx: 'auto', opacity: 0.95 }}>
@@ -100,17 +100,17 @@ export default function About() {
 
       {/* Mission Section */}
       <Container maxWidth="lg" sx={{ mb: 10 }}>
-        <Grid container spacing={6} alignItems="center">
-          <Grid item xs={12} md={6}>
-            <Typography variant="h3" fontWeight="bold" gutterBottom>
+        <Grid container spacing={6} sx={{ alignItems: 'center' }}>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold' }}>
               Our Mission
             </Typography>
-            <Typography variant="body1" color="text.secondary" paragraph>
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
               At DataCollect, we're on a mission to democratize data collection and make quality
               research accessible to everyone. We believe that valuable insights shouldn't be
               limited by resources or technical expertise.
             </Typography>
-            <Typography variant="body1" color="text.secondary" paragraph>
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
               Our platform bridges the gap between data hunters who need quality data and
               contributors who want to share their insights. We've created a thriving ecosystem
               where knowledge flows freely and everyone benefits.
@@ -121,10 +121,10 @@ export default function About() {
               community, and support you need to succeed.
             </Typography>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Grid container spacing={2}>
               {stats.map((stat, index) => (
-                <Grid item xs={6} key={index}>
+                <Grid size={6} key={index}>
                   <Paper
                     elevation={2}
                     sx={{
@@ -135,7 +135,7 @@ export default function About() {
                       borderColor: 'primary.main'
                     }}
                   >
-                    <Typography variant="h3" fontWeight="bold" color="primary.main" gutterBottom>
+                    <Typography variant="h3" color="primary.main" gutterBottom sx={{ fontWeight: 'bold' }}>
                       {stat.value}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -152,12 +152,12 @@ export default function About() {
       {/* Values Section */}
       <Box sx={{ bgcolor: 'white', py: 10 }}>
         <Container maxWidth="lg">
-          <Typography variant="h3" fontWeight="bold" gutterBottom align="center" sx={{ mb: 6 }}>
+          <Typography variant="h3" gutterBottom align="center" sx={{ fontWeight: 'bold', mb: 6 }}>
             Our Core Values
           </Typography>
           <Grid container spacing={4}>
             {values.map((value, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
                 <Paper
                   elevation={2}
                   sx={{
@@ -177,7 +177,7 @@ export default function About() {
                   <Box sx={{ mb: 2 }}>
                     {value.icon}
                   </Box>
-                  <Typography variant="h6" fontWeight="bold" gutterBottom>
+                  <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                     {value.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -192,12 +192,12 @@ export default function About() {
 
       {/* Team Section */}
       <Container maxWidth="lg" sx={{ py: 10 }}>
-        <Typography variant="h3" fontWeight="bold" gutterBottom align="center" sx={{ mb: 6 }}>
+        <Typography variant="h3" gutterBottom align="center" sx={{ fontWeight: 'bold', mb: 6 }}>
           Meet Our Team
         </Typography>
         <Grid container spacing={4}>
           {team.map((member, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
               <Paper
                 elevation={2}
                 sx={{
@@ -220,7 +220,7 @@ export default function About() {
                 >
                   {member.avatar}
                 </Avatar>
-                <Typography variant="h6" fontWeight="bold" gutterBottom>
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                   {member.name}
                 </Typography>
                 <Typography variant="body2" color="primary.main" gutterBottom>
@@ -238,14 +238,14 @@ export default function About() {
       {/* CTA Section */}
       <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 8, mb: 0 }}>
         <Container maxWidth="md">
-          <Typography variant="h4" fontWeight="bold" gutterBottom align="center">
+          <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: 'bold' }}>
             Join Our Growing Community
           </Typography>
           <Typography variant="h6" align="center" sx={{ mb: 4, opacity: 0.95 }}>
             Be part of the data revolution. Whether you're creating surveys or contributing insights,
             there's a place for you here.
           </Typography>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ justifyContent: 'center' }}>
             <Box
               component="a"
               href="/forms/new"

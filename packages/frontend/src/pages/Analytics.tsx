@@ -54,7 +54,7 @@ export default function Analytics() {
   const { isAuthenticated } = useAppSelector((state) => state.auth);
   const [tabValue, setTabValue] = useState(0);
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
 
@@ -124,7 +124,7 @@ export default function Analytics() {
     <Container maxWidth="xl" sx={{ py: 4, px: { xs: 3, sm: 4, md: 6 } }}>
       {/* Header */}
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h3" gutterBottom fontWeight="bold">
+        <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold' }}>
           Analytics & Insights
         </Typography>
         <Typography variant="body1" color="text.secondary">
@@ -135,13 +135,13 @@ export default function Analytics() {
       {/* Stats Overview */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
         {sampleAnalytics.map((stat, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
             <Card>
               <CardContent>
                 <Typography variant="body2" color="text.secondary" gutterBottom>
                   {stat.metric}
                 </Typography>
-                <Typography variant="h4" fontWeight="bold">
+                <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
                   {stat.value}
                 </Typography>
                 <Chip
@@ -169,7 +169,7 @@ export default function Analytics() {
       <TabPanel value={tabValue} index={0}>
         {!isAuthenticated && (
           <Alert severity="info" sx={{ mb: 3 }}>
-            <Typography variant="body2" fontWeight="bold" gutterBottom>
+            <Typography variant="body2" gutterBottom sx={{ fontWeight: 'bold' }}>
               Advanced analytics requires authentication
             </Typography>
             <Typography variant="body2">
@@ -188,7 +188,7 @@ export default function Analytics() {
 
         <Grid container spacing={3}>
           {statisticalTests.map((test, index) => (
-            <Grid item xs={12} md={6} key={index}>
+            <Grid size={{ xs: 12, md: 6 }} key={index}>
               <Card sx={{ height: '100%' }}>
                 <CardContent>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
@@ -197,7 +197,7 @@ export default function Analytics() {
                       {test.name}
                     </Typography>
                   </Box>
-                  <Typography variant="body2" color="text.secondary" paragraph>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                     {test.description}
                   </Typography>
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -224,10 +224,10 @@ export default function Analytics() {
 
         <Box sx={{ mt: 4, textAlign: 'center', p: 4, bgcolor: 'grey.50', borderRadius: 2 }}>
           <CloudUpload sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
-          <Typography variant="h5" gutterBottom fontWeight="bold">
+          <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
             Upload Your Data
           </Typography>
-          <Typography variant="body1" color="text.secondary" paragraph>
+          <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
             Upload CSV or Excel files and get instant statistical analysis
           </Typography>
           <Button
@@ -243,7 +243,7 @@ export default function Analytics() {
 
       {/* Tab 2: Marketplace Analytics */}
       <TabPanel value={tabValue} index={1}>
-        <Typography variant="h5" gutterBottom fontWeight="bold">
+        <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
           Trending Datasets
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -265,7 +265,7 @@ export default function Analytics() {
               {trendingDatasets.map((dataset, index) => (
                 <TableRow key={index} hover>
                   <TableCell>
-                    <Typography variant="body2" fontWeight="medium">
+                    <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
                       {dataset.name}
                     </Typography>
                   </TableCell>
@@ -273,7 +273,7 @@ export default function Analytics() {
                     <Chip label={dataset.downloads} size="small" color="primary" />
                   </TableCell>
                   <TableCell align="right">
-                    <Typography variant="body2" color="success.main" fontWeight="bold">
+                    <Typography variant="body2" color="success.main" sx={{ fontWeight: 'bold' }}>
                       ${dataset.price}
                     </Typography>
                   </TableCell>
@@ -282,7 +282,7 @@ export default function Analytics() {
                       <Typography variant="body2" sx={{ mr: 0.5 }}>
                         ⭐
                       </Typography>
-                      <Typography variant="body2" fontWeight="bold">
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
                         {dataset.rating}
                       </Typography>
                     </Box>
@@ -303,38 +303,38 @@ export default function Analytics() {
         </TableContainer>
 
         <Grid container spacing={3} sx={{ mt: 3 }}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom fontWeight="bold">
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                   Category Distribution
                 </Typography>
                 <Stack spacing={2}>
                   <Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                       <Typography variant="body2">Healthcare</Typography>
-                      <Typography variant="body2" fontWeight="bold">35%</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>35%</Typography>
                     </Box>
                     <LinearProgress variant="determinate" value={35} />
                   </Box>
                   <Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                       <Typography variant="body2">Retail</Typography>
-                      <Typography variant="body2" fontWeight="bold">28%</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>28%</Typography>
                     </Box>
                     <LinearProgress variant="determinate" value={28} />
                   </Box>
                   <Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                       <Typography variant="body2">Technology</Typography>
-                      <Typography variant="body2" fontWeight="bold">22%</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>22%</Typography>
                     </Box>
                     <LinearProgress variant="determinate" value={22} />
                   </Box>
                   <Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                       <Typography variant="body2">Finance</Typography>
-                      <Typography variant="body2" fontWeight="bold">15%</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>15%</Typography>
                     </Box>
                     <LinearProgress variant="determinate" value={15} />
                   </Box>
@@ -343,38 +343,38 @@ export default function Analytics() {
             </Card>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom fontWeight="bold">
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                   Price Range Analysis
                 </Typography>
                 <Stack spacing={2}>
                   <Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                       <Typography variant="body2">$0 - $100</Typography>
-                      <Typography variant="body2" fontWeight="bold">120 datasets</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>120 datasets</Typography>
                     </Box>
                     <LinearProgress variant="determinate" value={45} color="success" />
                   </Box>
                   <Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                       <Typography variant="body2">$100 - $200</Typography>
-                      <Typography variant="body2" fontWeight="bold">85 datasets</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>85 datasets</Typography>
                     </Box>
                     <LinearProgress variant="determinate" value={32} color="info" />
                   </Box>
                   <Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                       <Typography variant="body2">$200 - $500</Typography>
-                      <Typography variant="body2" fontWeight="bold">42 datasets</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>42 datasets</Typography>
                     </Box>
                     <LinearProgress variant="determinate" value={16} color="warning" />
                   </Box>
                   <Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                       <Typography variant="body2">$500+</Typography>
-                      <Typography variant="body2" fontWeight="bold">18 datasets</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>18 datasets</Typography>
                     </Box>
                     <LinearProgress variant="determinate" value={7} color="error" />
                   </Box>
@@ -388,10 +388,10 @@ export default function Analytics() {
       {/* Tab 3: Data Visualization */}
       <TabPanel value={tabValue} index={2}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom fontWeight="bold">
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                   Available Chart Types
                 </Typography>
                 <Stack spacing={2}>
@@ -425,10 +425,10 @@ export default function Analytics() {
             </Card>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom fontWeight="bold">
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                   Export Options
                 </Typography>
                 <Stack spacing={2}>
@@ -447,7 +447,7 @@ export default function Analytics() {
                         borderRadius: 1
                       }}
                     >
-                      <Typography variant="body2" fontWeight="bold">
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
                         {option.format}
                       </Typography>
                       <Typography variant="caption" color="text.secondary">
@@ -463,7 +463,7 @@ export default function Analytics() {
 
         <Box sx={{ mt: 4, textAlign: 'center', p: 4, bgcolor: 'primary.main', color: 'white', borderRadius: 2 }}>
           <Assessment sx={{ fontSize: 64, mb: 2 }} />
-          <Typography variant="h5" gutterBottom fontWeight="bold">
+          <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
             AI-Powered Insights
           </Typography>
           <Typography variant="body1" sx={{ mb: 3, opacity: 0.9 }}>

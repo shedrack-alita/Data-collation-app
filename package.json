@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Comprehensive data collection, crowdsourcing, and analytics platform",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "workspaces": [
     "packages/*"
   ],
@@ -25,6 +28,6 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^10.0.5"
   }
 }

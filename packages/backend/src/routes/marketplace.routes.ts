@@ -6,7 +6,7 @@ const router = express.Router();
 // ===== DATASETS =====
 
 // Browse datasets - public access
-router.get('/datasets', optionalAuth, (req, res) => {
+router.get('/datasets', optionalAuth, (_req, res) => {
   res.json({
     message: 'Browse all datasets',
     note: 'Public access - anyone can browse datasets'
@@ -22,7 +22,7 @@ router.get('/datasets/:id', optionalAuth, (req, res) => {
 });
 
 // Upload dataset - requires authentication
-router.post('/datasets', protect, (req, res) => {
+router.post('/datasets', protect, (_req, res) => {
   res.json({
     message: 'Upload new dataset',
     note: 'Requires authentication to upload and sell datasets'
@@ -56,7 +56,7 @@ router.post('/datasets/:id/review', protect, (req, res) => {
 // ===== DATA REQUESTS =====
 
 // Browse data requests - public access
-router.get('/requests', optionalAuth, (req, res) => {
+router.get('/requests', optionalAuth, (_req, res) => {
   res.json({
     message: 'Browse all data requests',
     note: 'Public access - anyone can browse requests'
@@ -72,7 +72,7 @@ router.get('/requests/:id', optionalAuth, (req, res) => {
 });
 
 // Create data request - requires authentication
-router.post('/requests', protect, (req, res) => {
+router.post('/requests', protect, (_req, res) => {
   res.json({
     message: 'Create new data request',
     note: 'Requires authentication to request datasets'

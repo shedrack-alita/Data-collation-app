@@ -181,7 +181,7 @@ export const refreshToken = async (req: Request, res: Response, next: NextFuncti
           refreshToken: newRefreshToken
         }
       });
-    } catch (error) {
+    } catch {
       throw new AppError('Invalid refresh token', 401);
     }
   } catch (error) {
