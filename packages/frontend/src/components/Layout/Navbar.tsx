@@ -19,8 +19,6 @@ import {
   Menu as MenuIcon,
   Dashboard as DashboardIcon,
   Assessment,
-  Store,
-  Analytics,
   AccountBalanceWallet,
   Person,
   AdminPanelSettings
@@ -188,7 +186,7 @@ export default function Navbar() {
                   onClose={handleCloseUserMenu}
                 >
                   <Box sx={{ px: 2, py: 1, borderBottom: 1, borderColor: 'divider' }}>
-                    <Typography variant="subtitle2" fontWeight="bold">
+                    <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
                       {user?.firstName} {user?.lastName}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">

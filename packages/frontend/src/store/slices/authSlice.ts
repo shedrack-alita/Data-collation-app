@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../services/api';
 
 interface User {
@@ -67,7 +67,7 @@ export const checkAuth = createAsyncThunk(
       }
       const response = await api.get('/auth/me');
       return response.data.data;
-    } catch (error) {
+    } catch {
       localStorage.removeItem('token');
       localStorage.removeItem('refreshToken');
       return rejectWithValue('Authentication failed');

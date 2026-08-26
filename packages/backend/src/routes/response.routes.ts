@@ -1,11 +1,11 @@
 import express from 'express';
-import { protect, authorize, optionalAuth } from '../middleware/auth';
+import { protect, authorize, AuthRequest } from '../middleware/auth';
 import { UserRole } from '../models/User.model';
 
 const router = express.Router();
 
 // Submit response - requires authentication to track contributor and payment
-router.post('/', protect, authorize(UserRole.CONTRIBUTOR, UserRole.CREATOR, UserRole.ADMIN), (req, res) => {
+router.post('/', protect, authorize(UserRole.CONTRIBUTOR, UserRole.CREATOR, UserRole.ADMIN), (req: AuthRequest, res) => {
   res.json({
     message: 'Submit form response',
     note: 'Requires authentication to track contributor for payment',

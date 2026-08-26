@@ -37,7 +37,7 @@ export const protect = async (req: AuthRequest, _res: Response, next: NextFuncti
 
       req.user = user;
       next();
-    } catch (error) {
+    } catch {
       throw new AppError('Not authorized to access this route', 401);
     }
   } catch (error) {
@@ -76,7 +76,7 @@ export const optionalAuth = async (req: AuthRequest, _res: Response, next: NextF
         if (user && user.status === 'active') {
           req.user = user;
         }
-      } catch (error) {
+      } catch {
         // Token invalid, continue without user
       }
     }

@@ -50,7 +50,7 @@ data-collection-platform/
 ## Getting Started
 
 ### Prerequisites
-- Node.js 18+
+- Node.js 20+
 - Python 3.11+
 - PostgreSQL 14+
 - MongoDB 6+

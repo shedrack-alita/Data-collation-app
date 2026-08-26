@@ -4,7 +4,7 @@ import { protect } from '../middleware/auth';
 const router = express.Router();
 
 // Analytics routes
-router.get('/', protect, (req, res) => {
+router.get('/', protect, (_req, res) => {
   res.json({ message: 'Analytics routes - coming soon' });
 });
 

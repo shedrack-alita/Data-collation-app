@@ -4,7 +4,7 @@ import { protect } from '../middleware/auth';
 const router = express.Router();
 
 // Wallet and transaction routes
-router.get('/', protect, (req, res) => {
+router.get('/', protect, (_req, res) => {
   res.json({ message: 'Wallet routes - coming soon' });
 });
 

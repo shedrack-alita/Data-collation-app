@@ -186,7 +186,7 @@ async def t_test_analysis(request: TTestRequest):
             "test_type": test_type,
             "t_statistic": float(t_stat),
             "p_value": float(p_value),
-            "significant": p_value < 0.05
+            "significant": bool(p_value < 0.05)
         }
 
     except Exception as e:
@@ -206,7 +206,7 @@ async def chi_square_test(request: ChiSquareRequest):
             "p_value": float(p_value),
             "degrees_of_freedom": int(dof),
             "expected_frequencies": expected.tolist(),
-            "significant": p_value < 0.05
+            "significant": bool(p_value < 0.05)
         }
 
     except Exception as e:
@@ -225,7 +225,7 @@ async def anova_analysis(request: Dict[str, List[float]]):
             "success": True,
             "f_statistic": float(f_stat),
             "p_value": float(p_value),
-            "significant": p_value < 0.05
+            "significant": bool(p_value < 0.05)
         }
 
     except Exception as e:

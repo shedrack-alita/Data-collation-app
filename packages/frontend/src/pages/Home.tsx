@@ -82,9 +82,9 @@ export default function Home() {
         }}
       >
         <Container maxWidth="lg" sx={{ px: { xs: 3, sm: 4, md: 6 } }}>
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Typography variant="h2" gutterBottom fontWeight="bold">
+          <Grid container spacing={4} sx={{ alignItems: 'center' }}>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Typography variant="h2" gutterBottom sx={{ fontWeight: 'bold' }}>
                 Data Collection & Analytics Platform
               </Typography>
               <Typography variant="h5" sx={{ mb: 4, opacity: 0.9 }}>
@@ -127,7 +127,7 @@ export default function Home() {
             </Grid>
 
             {/* Hero Illustration */}
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Box
                 sx={{
                   position: 'relative',
@@ -204,7 +204,7 @@ export default function Home() {
                     }}
                   >
                     <BarChart sx={{ fontSize: 32, color: 'primary.main' }} />
-                    <Typography variant="caption" display="block" color="text.secondary">
+                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
                       Analytics
                     </Typography>
                   </Paper>
@@ -223,7 +223,7 @@ export default function Home() {
                     }}
                   >
                     <PieChart sx={{ fontSize: 32, color: 'secondary.main' }} />
-                    <Typography variant="caption" display="block" color="text.secondary">
+                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
                       Reports
                     </Typography>
                   </Paper>
@@ -242,7 +242,7 @@ export default function Home() {
                     }}
                   >
                     <ShowChart sx={{ fontSize: 32, color: 'success.main' }} />
-                    <Typography variant="caption" display="block" color="text.secondary">
+                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
                       Insights
                     </Typography>
                   </Paper>
@@ -261,7 +261,7 @@ export default function Home() {
                     }}
                   >
                     <People sx={{ fontSize: 32, color: 'warning.main' }} />
-                    <Typography variant="caption" display="block" color="text.secondary">
+                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
                       Contributors
                     </Typography>
                   </Paper>
@@ -288,16 +288,16 @@ export default function Home() {
                     }}
                   >
                     <Grid container spacing={2}>
-                      <Grid item xs={6}>
-                        <Typography variant="h4" fontWeight="bold" color="primary">
+                      <Grid size={6}>
+                        <Typography variant="h4" color="primary" sx={{ fontWeight: 'bold' }}>
                           10,000+
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
                           Active Users
                         </Typography>
                       </Grid>
-                      <Grid item xs={6}>
-                        <Typography variant="h4" fontWeight="bold" color="secondary">
+                      <Grid size={6}>
+                        <Typography variant="h4" color="secondary" sx={{ fontWeight: 'bold' }}>
                           50,000+
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
@@ -340,7 +340,7 @@ export default function Home() {
 
       {/* Features Section */}
       <Container maxWidth="lg" sx={{ mb: 8, px: { xs: 3, sm: 4, md: 6 } }}>
-        <Typography variant="h3" align="center" gutterBottom fontWeight="bold">
+        <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
           Everything You Need
         </Typography>
         <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 6 }}>
@@ -348,7 +348,7 @@ export default function Home() {
         </Typography>
         <Grid container spacing={4}>
           {features.map((feature, index) => (
-            <Grid item xs={12} md={4} key={index}>
+            <Grid size={{ xs: 12, md: 4 }} key={index}>
               <Card sx={{ height: '100%', '&:hover': { boxShadow: 6 } }}>
                 <CardContent sx={{ textAlign: 'center', p: 4 }}>
                   {feature.icon}
@@ -368,9 +368,9 @@ export default function Home() {
       {/* Benefits Section */}
       <Box sx={{ bgcolor: 'grey.50', py: 8, mb: 8 }}>
         <Container maxWidth="lg" sx={{ px: { xs: 3, sm: 4, md: 6 } }}>
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Typography variant="h3" gutterBottom fontWeight="bold">
+          <Grid container spacing={6} sx={{ alignItems: 'center' }}>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold' }}>
                 Why Choose Our Platform?
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
@@ -386,9 +386,9 @@ export default function Home() {
                 ))}
               </Stack>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Card sx={{ p: 4, bgcolor: 'primary.main', color: 'white' }}>
-                <Typography variant="h4" gutterBottom fontWeight="bold">
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
                   Start Earning Today
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 3, opacity: 0.9 }}>
@@ -421,13 +421,13 @@ export default function Home() {
 
       {/* CTA Section */}
       <Container maxWidth="md" sx={{ mb: 8, textAlign: 'center', px: { xs: 3, sm: 4, md: 6 } }}>
-        <Typography variant="h3" gutterBottom fontWeight="bold">
+        <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold' }}>
           Ready to Get Started?
         </Typography>
         <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
           Create your free account and start collecting data in minutes
         </Typography>
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ justifyContent: 'center' }}>
           <Button
             variant="contained"
             size="large"

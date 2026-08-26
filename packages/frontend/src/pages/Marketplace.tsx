@@ -21,8 +21,7 @@ import {
   InputLabel,
   Divider,
   Avatar,
-  Rating,
-  IconButton
+  Rating
 } from '@mui/material';
 import {
   Search,
@@ -30,7 +29,6 @@ import {
   Download,
   Verified,
   TrendingUp,
-  Category,
   AttachMoney,
   Person,
   CalendarToday,
@@ -62,7 +60,7 @@ export default function Marketplace() {
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
 
@@ -246,7 +244,7 @@ export default function Marketplace() {
       <Container maxWidth="xl" sx={{ px: { xs: 3, sm: 4, md: 6 } }}>
         {/* Header */}
         <Box sx={{ mb: 4 }}>
-          <Typography variant="h3" gutterBottom fontWeight="bold" color="text.primary">
+          <Typography variant="h3" gutterBottom color="text.primary" sx={{ fontWeight: 'bold' }}>
             Data Marketplace
           </Typography>
           <Typography variant="body1" color="text.secondary">
@@ -256,24 +254,26 @@ export default function Marketplace() {
 
         {/* Search and Filters */}
         <Box sx={{ mb: 4 }}>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} md={6}>
+          <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <TextField
                 fullWidth
                 placeholder="Search datasets or data requests..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Search />
-                    </InputAdornment>
-                  ),
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search />
+                      </InputAdornment>
+                    )
+                  }
                 }}
                 sx={{ bgcolor: 'white' }}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <FormControl fullWidth sx={{ bgcolor: 'white' }}>
                 <InputLabel>Category</InputLabel>
                 <Select
@@ -289,7 +289,7 @@ export default function Marketplace() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
               <Button
                 fullWidth
                 variant="contained"
@@ -316,7 +316,7 @@ export default function Marketplace() {
         <TabPanel value={tabValue} index={0}>
           <Grid container spacing={3}>
             {filteredDatasets.map((dataset) => (
-              <Grid item xs={12} md={6} lg={4} key={dataset.id}>
+              <Grid size={{ xs: 12, md: 6, lg: 4 }} key={dataset.id}>
                 <Card
                   sx={{
                     height: '100%',
@@ -348,7 +348,7 @@ export default function Marketplace() {
                     </Stack>
 
                     {/* Title */}
-                    <Typography variant="h6" gutterBottom fontWeight="bold">
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                       {dataset.title}
                     </Typography>
 
@@ -397,7 +397,7 @@ export default function Marketplace() {
 
                     {/* Price */}
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <Typography variant="h5" fontWeight="bold" color="primary.main">
+                      <Typography variant="h5" color="primary.main" sx={{ fontWeight: 'bold' }}>
                         ${dataset.price}
                       </Typography>
                       <Typography variant="caption" color="text.secondary">
@@ -453,7 +453,7 @@ export default function Marketplace() {
 
           <Grid container spacing={3}>
             {dataRequests.map((request) => (
-              <Grid item xs={12} md={6} key={request.id}>
+              <Grid size={{ xs: 12, md: 6 }} key={request.id}>
                 <Card
                   sx={{
                     border: '1px solid #E0E0E0',
@@ -479,7 +479,7 @@ export default function Marketplace() {
                     </Stack>
 
                     {/* Title */}
-                    <Typography variant="h6" gutterBottom fontWeight="bold">
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                       {request.title}
                     </Typography>
 
@@ -490,53 +490,53 @@ export default function Marketplace() {
 
                     {/* Details Grid */}
                     <Grid container spacing={2} sx={{ mb: 3 }}>
-                      <Grid item xs={6}>
+                      <Grid size={6}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                           <AttachMoney fontSize="small" color="action" />
                           <Box>
-                            <Typography variant="caption" color="text.secondary" display="block">
+                            <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
                               Budget
                             </Typography>
-                            <Typography variant="body2" fontWeight="bold" color="primary.main">
+                            <Typography variant="body2" color="primary.main" sx={{ fontWeight: 'bold' }}>
                               ${request.budget}
                             </Typography>
                           </Box>
                         </Box>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid size={6}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                           <CalendarToday fontSize="small" color="action" />
                           <Box>
-                            <Typography variant="caption" color="text.secondary" display="block">
+                            <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
                               Deadline
                             </Typography>
-                            <Typography variant="body2" fontWeight="bold">
+                            <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
                               {request.deadline}
                             </Typography>
                           </Box>
                         </Box>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid size={6}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                           <Person fontSize="small" color="action" />
                           <Box>
-                            <Typography variant="caption" color="text.secondary" display="block">
+                            <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
                               Requester
                             </Typography>
-                            <Typography variant="body2" fontWeight="medium">
+                            <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
                               {request.requester}
                             </Typography>
                           </Box>
                         </Box>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid size={6}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                           <TrendingUp fontSize="small" color="action" />
                           <Box>
-                            <Typography variant="caption" color="text.secondary" display="block">
+                            <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
                               Offers
                             </Typography>
-                            <Typography variant="body2" fontWeight="bold" color="success.main">
+                            <Typography variant="body2" color="success.main" sx={{ fontWeight: 'bold' }}>
                               {request.offers} offers
                             </Typography>
                           </Box>

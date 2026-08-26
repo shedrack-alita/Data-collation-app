@@ -38,7 +38,7 @@ export default function Register() {
   const password = watch('password');
 
   const onSubmit = async (data: RegisterForm) => {
-    const { confirmPassword, role, ...registerData } = data;
+    const { confirmPassword: _confirmPassword, role, ...registerData } = data;
     // Convert role to roles array
     const dataWithRoles = {
       ...registerData,
@@ -68,7 +68,7 @@ export default function Register() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid size={6}>
               <TextField
                 fullWidth
                 label="First Name"
@@ -77,7 +77,7 @@ export default function Register() {
                 helperText={errors.firstName?.message}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid size={6}>
               <TextField
                 fullWidth
                 label="Last Name"
@@ -98,7 +98,7 @@ export default function Register() {
                 control={<Radio {...register('role', { required: 'Please select your role' })} />}
                 label={
                   <Box>
-                    <Typography variant="body1" fontWeight={600}>Create Surveys</Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 600 }}>Create Surveys</Typography>
                     <Typography variant="caption" color="text.secondary">
                       Design and publish surveys to collect data
                     </Typography>
@@ -119,7 +119,7 @@ export default function Register() {
                 control={<Radio {...register('role', { required: 'Please select your role' })} />}
                 label={
                   <Box>
-                    <Typography variant="body1" fontWeight={600}>Contribute Data</Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 600 }}>Contribute Data</Typography>
                     <Typography variant="caption" color="text.secondary">
                       Fill out surveys and earn rewards
                     </Typography>

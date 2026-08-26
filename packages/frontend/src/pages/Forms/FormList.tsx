@@ -47,7 +47,7 @@ export default function FormList() {
     <Container maxWidth="lg" sx={{ py: 4, px: { xs: 3, sm: 4, md: 6 } }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
         <div>
-          <Typography variant="h4" gutterBottom fontWeight="bold">
+          <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
             {isAuthenticated ? 'My Surveys' : 'Browse Surveys'}
           </Typography>
           <Typography variant="body1" color="text.secondary">
@@ -77,7 +77,7 @@ export default function FormList() {
             mb: 4
           }}
         >
-          <Typography variant="body1" gutterBottom fontWeight="bold">
+          <Typography variant="body1" gutterBottom sx={{ fontWeight: 'bold' }}>
             Want to fill forms and earn money?
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
@@ -95,7 +95,7 @@ export default function FormList() {
 
       <Grid container spacing={3}>
         {mockForms.map((form) => (
-          <Grid item xs={12} md={6} lg={4} key={form.id}>
+          <Grid size={{ xs: 12, md: 6, lg: 4 }} key={form.id}>
             <Card sx={{ height: '100%', '&:hover': { boxShadow: 6 }, cursor: 'pointer' }}>
               <CardContent onClick={() => navigate(`/forms/${form.id}`)}>
                 <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
@@ -112,7 +112,7 @@ export default function FormList() {
                   />
                 </Stack>
 
-                <Typography variant="h6" gutterBottom fontWeight="bold">
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                   {form.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>

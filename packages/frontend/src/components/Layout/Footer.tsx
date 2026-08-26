@@ -27,10 +27,10 @@ export default function Footer() {
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           {/* Brand Section */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Assessment sx={{ fontSize: 32, color: '#C92258', mr: 1 }} />
-              <Typography variant="h6" fontWeight="bold">
+              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                 DataCollect
               </Typography>
             </Box>
@@ -55,8 +55,8 @@ export default function Footer() {
           </Grid>
 
           {/* Quick Links */}
-          <Grid item xs={12} sm={6} md={2}>
-            <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 2 }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
               Platform
             </Typography>
             <Stack spacing={1}>
@@ -76,8 +76,8 @@ export default function Footer() {
           </Grid>
 
           {/* Resources */}
-          <Grid item xs={12} sm={6} md={2}>
-            <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 2 }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
               Resources
             </Typography>
             <Stack spacing={1}>
@@ -97,8 +97,8 @@ export default function Footer() {
           </Grid>
 
           {/* Contact */}
-          <Grid item xs={12} md={4}>
-            <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
+          <Grid size={{ xs: 12, md: 4 }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
               Contact Us
             </Typography>
             <Stack spacing={1.5}>

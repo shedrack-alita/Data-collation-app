@@ -7,7 +7,7 @@ const router = express.Router();
 // Admin panel routes - restricted to admin role
 router.use(protect, authorize(UserRole.ADMIN));
 
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', (_req, res) => {
   res.json({ message: 'Admin routes - coming soon' });
 });
 
